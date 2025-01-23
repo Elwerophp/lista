@@ -1,20 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      lista
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre:</ion-label>
+      <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha:</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="fecha"></ion-datetime>
+    </ion-item>
+    <ion-button (click)="guardar()">Guardar</ion-button>
+  </ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+<table border="1" style="margin-top: 20px;width: 100%;text-align: left;">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>nombre</th>
+      <th>fecha</th>
+      <th>completado</th>
+      <th>acciones</th> <!-- Added missing header for actions column -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of lista">
+      <td>{{item.id}}</td>
+      <td>{{item.nombre}}</td>
+      <td>{{item.fecha}}</td>
+      <td>
+        <input type="checkbox" [(ngModel)]="item.completado">
+      </td>
+      <td><ion-button (click)="eliminar(item.id)">Eliminar</ion-button></td>
+    </tr>
+  </tbody> <!-- Added missing closing tbody tag -->
+</table>
+
+
+
 </ion-content>
